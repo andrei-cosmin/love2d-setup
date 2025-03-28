@@ -24,7 +24,7 @@ APPLE_DEPENDENCIES_REPOSITORY="https://github.com/love2d/love-apple-dependencies
 APPLE_DEPENDENCIES_DIR="love-apple-dependencies"
 ## Clone apple dependecies repository
 GIT_TERMINAL_PROMPT=0 git clone $APPLE_DEPENDENCIES_REPOSITORY $APPLE_DEPENDENCIES_DIR
-if [ $? -ne 0 ]; then 
+if [ $? -ne 0 ]; then
 	### Print error message
 	echo "Failed to fetch apple dependecies for love2d: $APPLE_DEPENDENCIES_REPOSITORY"
 	### Perform clean up

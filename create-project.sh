@@ -1,33 +1,33 @@
 #!/bin/bash
 
-
 # If there less than 2 arguments, the script fails since '-p [directory]' is required
-if [ "$#" -lt 2 ]; then 
+if [ "$#" -lt 2 ]; then
 	echo "Option -p [directory] is required."
 	exit 1
 fi
 
 # Parse the option arguments
 while getopts :p: opt; do
-  case ${opt} in
-  	# If '-p' option is found extract the directory path
-    p)
-      PROJECT_ROOT="${OPTARG}"
-      ;;
-    # Unknown argument found (they are ignored)
-    ?)
-	  # If '-p' option is found without a value the script fails since [directory] is required
-	  if [ "${OPTARG}" == "p" ]; then
-      	echo "Option -${OPTARG} requires a [directory] path"
-      	exit 1
-      fi
-      ;;
-  esac
+	case ${opt} in
+		# If '-p' option is found extract the directory path
+		p)
+			PROJECT_ROOT="${OPTARG}"
+		;;
+
+		# Unknown argument found (they are ignored)
+		?)
+		 	# If '-p' option is found without a value the script fails since [directory] is required
+		 	if [ "${OPTARG}" == "p" ]; then
+					echo "Option -${OPTARG} requires a [directory] path"
+					exit 1
+			fi
+		;;
+	esac
 done
 
 # If the found [directory] path is empty ("" or not set) the script fails
 if [[ -z "$PROJECT_ROOT" ]]; then
-    echo "Option -p requires a [directory] path"
+	echo "Option -p requires a [directory] path"
 	exit 1
 fi
 
@@ -49,7 +49,7 @@ cd $PROJECT_ROOT
 ## Cloen the crush lua repository
 LUA_CRUSH_REPOSITORY="https://git.doublefourteen.io/lua/crush.git"
 GIT_TERMINAL_PROMPT=0 git clone $LUA_CRUSH_REPOSITORY
-if [ $? -ne 0 ]; then 
+if [ $? -ne 0 ]; then
 	### Print error message
 	echo "Failed to fetch lua crush dependecy manager: $LUA_CRUSH_REPOSITORY"
 	### Perform clean up
@@ -76,7 +76,7 @@ touch ".lovedeps"
 LOVE_API_REPOSITORY="https://github.com/love2d-community/love-api.git"
 LOVE_API_DIR="love2d-api"
 GIT_TERMINAL_PROMPT=0 git clone $LOVE_API_REPOSITORY $LOVE_API_DIR
-if [ $? -ne 0 ]; then 
+if [ $? -ne 0 ]; then
 	### Print error message
 	echo "Failed to fetch love2d API: $LOVE_API_REPOSITORY"
 	### Perform clean up
@@ -89,7 +89,7 @@ fi
 EMMY_LUA_API_REPOSITORY="https://github.com/kindfulkirby/Emmy-love-api.git"
 EMMY_LUA_API_DIR="emmy-lua-api"
 GIT_TERMINAL_PROMPT=0 git clone $EMMY_LUA_API_REPOSITORY $EMMY_LUA_API_DIR
-if [ $? -ne 0 ]; then 
+if [ $? -ne 0 ]; then
 	### Print error message
 	echo "Failed to fetch Emmy Lua API: $EMMY_LUA_API_REPOSITORY"
 	### Perform clean up
